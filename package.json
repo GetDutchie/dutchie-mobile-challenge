@@ -15,7 +15,7 @@
     "foreman": "^3.0.1",
     "graphql": "^15.4.0",
     "json-graphql-server": "^2.2.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "next": "^10.0.5",
     "prettier": "^2.2.1",
     "react": "^17.0.1",
