@@ -47,28 +47,28 @@ class AppTheme {
             height: 1.5,
             color: primaryBlack,
           ),
-          headline3: TextStyle(
+          headline1: TextStyle(
             fontFamily: proximaNovaFontFamily,
             fontWeight: FontWeight.w700,
             fontSize: 20,
             height: 1.2,
             color: primaryBlack,
           ),
-          headline4: TextStyle(
+          headline2: TextStyle(
             fontFamily: proximaNovaFontFamily,
             fontWeight: FontWeight.w700,
             fontSize: 16,
             height: 1.2,
             color: primaryBlack,
           ),
-          headline5: TextStyle(
+          headline3: TextStyle(
             fontFamily: proximaNovaFontFamily,
             fontWeight: FontWeight.w700,
             fontSize: 14,
             height: 1.75,
             color: primaryBlack,
           ),
-          headline6: TextStyle(
+          headline4: TextStyle(
             fontFamily: proximaNovaFontFamily,
             fontWeight: FontWeight.w700,
             fontSize: 12,

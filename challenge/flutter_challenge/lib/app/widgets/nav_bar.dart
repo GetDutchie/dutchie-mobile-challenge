@@ -24,7 +24,7 @@ class NavBar extends StatelessWidget {
         unselectedItemColor: AppTheme.green[65],
         selectedLabelStyle: Theme.of(context).textTheme.subtitle1,
         unselectedLabelStyle: Theme.of(context).textTheme.subtitle2,
-        items: [
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             label: 'Read Me',
             icon: SvgPicture.asset(

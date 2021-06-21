@@ -14,17 +14,19 @@ dependencies:
   flutter_svg: ^0.22.0
   flutter:
     sdk: flutter
+  get: ^4.1.4
 
-  cupertino_icons: ^1.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.11.0
 
 flutter:
   uses-material-design: true
   assets:
     - lib/assets/svgs/
+    - lib/assets/images/
 
   fonts:
     - family: Proxima Nova
@@ -40,7 +42,3 @@ flutter:
         - asset: lib/assets/fonts/ProximaNova-Regular-It.ttf
           style: italic
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
