@@ -10,7 +10,7 @@ class ReadMeTab extends StatelessWidget {
             children: <InlineSpan>[
               TextSpan(
                 text: '''
-Welcome to dutchie's front end technical challenge!
+Welcome to dutchie's mobile challenge!
 
 The following libraries are included in this project, you'll probably want to use them:
 
@@ -24,7 +24,7 @@ The following libraries are included in this project, you'll probably want to us
 • Pedantic
 
 ''',
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.bodyText2,
               ),
               TextSpan(text: '''
 Take a look at the pubspec.yaml file to see any assets that might help you out, and add whatever you need to get the challenge done. Feel free to look up anything you need to complete the tasks.

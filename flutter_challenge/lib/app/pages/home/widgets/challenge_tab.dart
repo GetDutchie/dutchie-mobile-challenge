@@ -14,13 +14,6 @@ class ChallengeTab extends StatelessWidget {
                 children: <InlineSpan>[
                   TextSpan(
                     text: '''
-Your Challenge
-''',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
-                  TextSpan(
-                    text: '''
-
 Display a grid of product cards, and add a product details page that is navigated to when you click each card.
 
 You should meet these criteria:
@@ -34,7 +27,7 @@ You should meet these criteria:
                   ),
                   TextSpan(
                     text: ''' https://localhost:5000 ''',
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   TextSpan(
                     text: '''
@@ -48,30 +41,21 @@ and can be explored with the GraphiQL UI at that route. The GraphQLClient in thi
                   ),
                   TextSpan(
                     text: ''' description, effects, ''',
-                    style: Theme.of(context).textTheme.subtitle1,
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   TextSpan(
                     text: '''and''',
                   ),
                   TextSpan(
                     text: ''' type ''',
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                  TextSpan(
-                    text: '''data. Note that these aren't displayed on the list card.
-• When the user clicks the new view, it should return you to the product list.''',
+                    style: Theme.of(context).textTheme.bodyText2,
                   ),
                   TextSpan(
                     text: '''
 
+• Extend the functionality of your submission in a creative way using
 
-EXTRA CREDIT ''',
-                    style: Theme.of(context).textTheme.subtitle1,
-                  ),
-                  TextSpan(
-                    text: '''
-
-• Extend the functionality of your submission considering the existing functionality of dutchie.com and state management. You may use the existing GetX library or any other state management library you are familiar with (i.e. BLOC)''',
+''',
                   ),
                 ],
               ),

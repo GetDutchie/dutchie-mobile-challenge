@@ -30,17 +30,3 @@ flutter:
     - lib/assets/svgs/
     - lib/assets/images/
 
-  fonts:
-    - family: Proxima Nova
-      fonts:
-        - asset: lib/assets/fonts/ProximaNova-Light.otf
-          weight: 300
-        - asset: lib/assets/fonts/ProximaNova-Regular.ttf
-          weight: 400
-        - asset: lib/assets/fonts/ProximaNova-SemiBold.otf
-          weight: 600
-        - asset: lib/assets/fonts/ProximaNova-Bold.ttf
-          weight: 700
-        - asset: lib/assets/fonts/ProximaNova-Regular-It.ttf
-          style: italic
-
