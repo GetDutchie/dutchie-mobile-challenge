@@ -18,7 +18,6 @@ The following libraries are included in this project, you'll probably want to us
               ),
               TextSpan(
                 text: '''
-• GetX
 • GraphQL Flutter
 • Flutter SVG
 • Pedantic
