@@ -6,7 +6,7 @@
     "server": "node index.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graphql": "^15.4.0",
     "json-graphql-server": "^2.2.0",
     "prettier": "^2.2.1"
