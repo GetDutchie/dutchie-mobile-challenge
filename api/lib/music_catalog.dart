@@ -20,18 +20,21 @@ class Album {
     required this.id,
     required this.title,
     required this.genre,
+    required this.imageUrl,
     required this.songs,
   });
 
   final String id;
   final String title;
   final String genre;
+  final String imageUrl;
   final List<Song> songs;
 
   Map<String, dynamic> toJson() => {
     'id': id,
     'title': title,
     'genre': genre,
+    'imageUrl': imageUrl,
     'songs': songs.map((s) => s.toJson()).toList(),
   };
 }
@@ -69,6 +72,19 @@ class MusicCatalog {
     'Reggae',
   ];
 
+  static const List<String> _albumImageUrls = [
+    'https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1461783436728-0a9217714694?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1507838153414-b4b713384a76?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=900&h=900&q=80',
+  ];
+
   static MusicCatalog generate() {
     final random = Random(42);
     final albums = <Album>[];
@@ -89,6 +105,7 @@ class MusicCatalog {
           id: 'album-$i',
           title: 'Album ${i + 1}',
           genre: _genres[i],
+          imageUrl: _albumImageUrls[i],
           songs: songs,
         ),
       );
