@@ -82,7 +82,7 @@ class MusicCatalog {
     'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&h=900&q=80',
     'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=900&h=900&q=80',
     'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&h=900&q=80',
-    'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=900&h=900&q=80',
+    'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?auto=format&fit=crop&w=900&h=900&q=80',
   ];
 
   static MusicCatalog generate() {
