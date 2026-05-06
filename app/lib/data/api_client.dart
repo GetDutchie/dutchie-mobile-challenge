@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class MockApiClient {
-  MockApiClient({required this.baseUrl});
+class ApiClient {
+  ApiClient({required this.baseUrl});
 
   final String baseUrl;
 
@@ -12,20 +12,20 @@ class MockApiClient {
   Future<List<Map<String, dynamic>>> fetchAlbums() async {
     final response = await http.get(_albumsUri());
     if (response.statusCode != 200) {
-      throw MockApiException(
+      throw ApiException(
         'GET /albums failed: ${response.statusCode} ${response.body}',
       );
     }
     final decoded = jsonDecode(response.body);
     if (decoded is! List) {
-      throw MockApiException('Expected JSON array from /albums');
+      throw ApiException('Expected JSON array from /albums');
     }
     return decoded.cast<Map<String, dynamic>>();
   }
 }
 
-class MockApiException implements Exception {
-  MockApiException(this.message);
+class ApiException implements Exception {
+  ApiException(this.message);
 
   final String message;
 
