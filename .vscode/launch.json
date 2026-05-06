@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter Web (Chrome)",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}/app",
+      "program": "lib/main.dart",
+      "args": ["-d", "chrome"]
+    },
+    {
+      "name": "Mock Music API",
+      "request": "launch",
+      "type": "dart",
+      "cwd": "${workspaceFolder}/api",
+      "program": "bin/server.dart"
+    }
+  ]
+}
