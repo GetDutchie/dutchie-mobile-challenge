@@ -57,7 +57,7 @@ class _MusicShellState extends State<MusicShell> {
     final pages = [
       const AlbumsPage(),
       const ArtistsPage(),
-      const PlaylistPage(),
+      PlaylistPage(songs: const[])
     ];
 
     return Scaffold(

@@ -19,5 +19,21 @@ class PlaylistPage extends StatelessWidget {
     );
   }
 
+  Widget _buildEmptyMessage() {
+    return const Center(
+      child: Text('No songs added yet'),
+    );
+  }
   
+  Widget _buildSongList() {
+    return ListView.builder(
+      itemCount: songs.length,
+      itemBuilder: (context, index) {
+        final song = songs[index];
+        return ListTile(
+          title: Text(song.title),
+        );
+      },
+    );
+  }
 }
