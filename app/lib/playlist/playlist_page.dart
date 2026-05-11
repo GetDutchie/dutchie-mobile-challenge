@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../data/api_client.dart';
 import '../models/album.dart';
 import '../models/music.dart';
+import '../models/artist.dart';
 
 class PlaylistPage extends StatefulWidget {
   const PlaylistPage({
@@ -15,21 +16,25 @@ class PlaylistPage extends StatefulWidget {
 class _PlaylistPageState extends State<PlaylistPage> {
   final List<Song> _playlistSongs = [];
   late final Future<List<Album>> _albumsFuture;
+  
   @override
   void initState() {
     super.initState();
     _albumsFuture = widget.client.fetchAlbums();
   }
+  
   void _addSong(Song song) {
     setState(() {
       _playlistSongs.add(song);
     });
   }
+  
   void _removeSong(Song song) {
     setState(() {
       _playlistSongs.remove(song);
     });
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +50,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
       ),
     );
   }
+
   Widget _buildPlaylistSection() {
     if (_playlistSongs.isEmpty) {
       return const Padding(
@@ -52,6 +58,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
         child: Text('No songs added yet'),
       );
     }
+
     return Column(
       children: [
         const ListTile(
@@ -71,6 +78,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
       ],
     );
   }
+
   Widget _buildAlbumsSection() {
     return FutureBuilder<List<Album>>(
       future: _albumsFuture,
@@ -118,4 +126,24 @@ class _PlaylistPageState extends State<PlaylistPage> {
       },
     );
   }
+}
+
+class PlaylistData {
+  const PlaylistData({
+    required this.albums,
+    required this.artists,
+  });
+  final List<Album> albums;
+  final List<Artist> artists;
+}
+
+class PlaylistEntry {
+  const PlaylistEntry({
+    required this.song,
+    required this.album,
+    required this.artistNames,
+  });
+  final Song song;
+  final Album album;
+  final String artistNames;
 }
