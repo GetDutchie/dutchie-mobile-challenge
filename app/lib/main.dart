@@ -52,12 +52,14 @@ class _MusicShellState extends State<MusicShell> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const AlbumsPage(),
-      const ArtistsPage(),
-      PlaylistPage(songs: const[])
+    const AlbumsPage(),
+    const ArtistsPage(),
+    PlaylistPage(client: widget.client),
+
     ];
 
     return Scaffold(
