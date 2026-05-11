@@ -14,25 +14,51 @@ class PlaylistPage extends StatefulWidget {
   State<PlaylistPage> createState() => _PlaylistPageState();
 }
 class _PlaylistPageState extends State<PlaylistPage> {
-  final List<Song> _playlistSongs = [];
-  late final Future<List<Album>> _albumsFuture;
+  final List<PlaylistEntry> _playlistSongs = [];
+  late final Future<PlaylistData> _playlistDataFuture;
   
   @override
   void initState() {
     super.initState();
-    _albumsFuture = widget.client.fetchAlbums();
+    _playlistDataFuture = _loadPlaylistData();
   }
   
-  void _addSong(Song song) {
+  void _addSong(Song song, Album album, String artistNames) {
     setState(() {
-      _playlistSongs.add(song);
+      _playlistSongs.add(
+        PlaylistEntry(
+          song: song,
+          album: album,
+          artistNames: artistNames,
+        ),
+      );
     });
   }
   
-  void _removeSong(Song song) {
+  void _removeSong(PlaylistEntry entry) {
     setState(() {
-      _playlistSongs.remove(song);
+      _playlistSongs.remove(entry);
     });
+  }
+
+  String _artistNamesForAlbum(Album album, List<Artist> artists) {
+    final names = artists
+        .where((artist) => artist.albumIds.contains(album.id))
+        .map((artist) => artist.name)
+        .toList();
+    if (names.isEmpty) {
+      return 'Unknown artist';
+    }
+    return names.join(', ');
+  }
+
+  Future<PlaylistData> _loadPlaylistData() async {
+    final albums = await widget.client.fetchAlbums();
+    final artists = await widget.client.fetchArtists();
+    return PlaylistData(
+      albums: albums,
+      artists: artists,
+    );
   }
   
   @override
@@ -45,6 +71,10 @@ class _PlaylistPageState extends State<PlaylistPage> {
         children: [
           _buildPlaylistSection(),
           const Divider(),
+          Padding(
+            padding: EdgeInsets.all(16),
+            child: Text('Expand albums and tap + to add songs to your playlist')
+          ),
           _buildAlbumsSection(),
         ],
       ),
@@ -64,14 +94,22 @@ class _PlaylistPageState extends State<PlaylistPage> {
         const ListTile(
           title: Text('My Playlist'),
         ),
-        ..._playlistSongs.map((song) {
+        ..._playlistSongs.map((entry) {
           return ListTile(
-            title: Text(song.title),
-            subtitle: Text(song.durationLabel),
+            leading: Image.network(
+              entry.album.imageUrl,
+              width: 48,
+              height: 48,
+              fit: BoxFit.cover,
+            ),
+            title: Text(entry.song.title),
+            subtitle: Text(
+              '${entry.artistNames} - ${entry.album.title} - ${entry.song.durationLabel}',
+            ),
             trailing: IconButton(
               icon: const Icon(Icons.delete_outline),
               tooltip: 'Remove song',
-              onPressed: () => _removeSong(song),
+              onPressed: () => _removeSong(entry),
             ),
           );
         }),
@@ -80,8 +118,8 @@ class _PlaylistPageState extends State<PlaylistPage> {
   }
 
   Widget _buildAlbumsSection() {
-    return FutureBuilder<List<Album>>(
-      future: _albumsFuture,
+    return FutureBuilder<PlaylistData>(
+      future: _playlistDataFuture,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Padding(
@@ -97,9 +135,12 @@ class _PlaylistPageState extends State<PlaylistPage> {
             ),
           );
         }
-        final albums = snapshot.data!;
+        final data = snapshot.data!;
+        final albums = data.albums;
+        final artists = data.artists;
         return Column(
           children: albums.map((album) {
+            final artistNames = _artistNamesForAlbum(album, artists);
             return ExpansionTile(
               leading: Image.network(
                 album.imageUrl,
@@ -108,7 +149,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 fit: BoxFit.cover,
               ),
               title: Text(album.title),
-              subtitle: Text(album.genre),
+              subtitle: Text('$artistNames - ${album.genre}'),
               children: album.songs.map((song) {
                 return ListTile(
                   title: Text(song.title),
@@ -116,11 +157,12 @@ class _PlaylistPageState extends State<PlaylistPage> {
                   trailing: IconButton(
                     icon: const Icon(Icons.add),
                     tooltip: 'Add to playlist',
-                    onPressed: () => _addSong(song),
+                    onPressed: () => _addSong(song, album, artistNames),
                   ),
                 );
               }).toList(),
             );
+
           }).toList(),
         );
       },
